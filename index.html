@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimber Academy - Rethinking Education</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts - Poppins for general text, Inter for specific elements -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS for scroll animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+
+    <style>
+        /* ===== Global Styles ===== */
+        :root {
+            --primary: #6C4DF6;  /* Vibrant purple */
+            --secondary: #FF7A5C; /* Coral accent */
+            --dark: #1A1A2E;     /* Deep navy */
+            --light: #F8F9FF;    /* Light cream */
+            --text: #2D2D3A;    /* Dark gray */
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif; /* Default to Poppins */
+        }
+
+        body {
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Hero section background */
+            min-height: 100vh;
+            scroll-behavior: smooth; /* Smooth scrolling for all links */
+            color: var(--text); /* Default text color from MIMBER HOME */
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ===== Navbar (from newhome.html, enhanced) ===== */
+        .navbar {
+            position: fixed; /* Fixed position for the navbar */
+            top: 20px;
+            right: 20px;
+            left: 20px; /* Make it span almost full width with margin */
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            max-width: calc(100% - 40px); /* Adjust max-width for side margins */
+            margin: 0 auto;
+            display: flex; /* Ensure flex for alignment */
+            justify-content: space-between; /* Space out brand and nav links */
+            align-items: center;
+        }
+
+        .navbar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #6c5ce7;
+            transform: scale(1.05);
+        }
+
+        .navbar-brand i {
+            color: #6c5ce7;
+            font-size: 2rem;
+        }
+
+        .navbar-nav {
+            align-items: center;
+        }
+
+        .navbar-nav .nav-link {
+            color: #333;
+            font-weight: 500;
+            margin: 0 8px;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #6c5ce7;
+            background: rgba(108, 92, 231, 0.1);
+            transform: translateY(-2px);
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #6c5ce7;
+            background: rgba(108, 92, 231, 0.15);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(108, 92, 231, 0.1);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* Enroll Button Styling (Squircle) */
+        .enroll-btn {
+            background: rgba(108, 92, 231, 0.15);
+            color: #000000;
+            padding: 12px 26px;
+            border: 2px solid #1201ff;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgb(43, 0, 255);
+            animation: enrollPulse 2s ease-in-out infinite;
+        }
+
+        .enroll-btn:hover {
+            background: linear-gradient(45deg, #1900fd, #0011ff);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgb(98, 2, 243);
+            color: rgb(1, 141, 255);
+            text-decoration: none; /* Keep no underline on hover */
+        }
+
+        @keyframes enrollPulse {
+            0% {
+                box-shadow: 0 4px 15px rgb(98, 0, 255);
+            }
+            50% {
+                box-shadow: 0 6px 25px rgb(98, 0, 255);
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgb(98, 0, 255);
+            }
+        }
+
+        /* Dropdown Menu Styling */
+        .dropdown-menu {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        .dropdown-item {
+            color: #333;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            margin: 5px;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(108, 92, 231, 0.1);
+            color: #6c5ce7;
+            transform: translateX(5px);
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 0 80px 0; /* Adjusted padding for fixed navbar */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-size: 4.1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInRight 1s ease-out 0.3s both;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-description {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            color: white;
+            width: 194px;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.3);
+            animation: pulse 2s infinite;
+            margin-top: auto;
+            margin-bottom: 4px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 210, 255, 0.5);
+            color: white;
+            background: linear-gradient(10deg, #3a7bd5, #00d2ff);
+            text-decoration: none;
+        }
+
+        /* 3D Organic Shape (Squircle Logo) - Hero Section */
+        .organic-shape {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(45deg, #a29bfe, #6c5ce7, #00b894);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morphing 6s ease-in-out infinite;
+            opacity: 0.9;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(162, 155, 254, 0.7); /* Added glow */
+        }
+
+        @keyframes morphing {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            50% { border-radius: 50% 60% 30% 60% / 60% 30% 60% 40%; }
+            75% { border-radius: 60% 40% 60% 20% / 40% 60% 50% 80%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        .organic-text {
+            color: #a29bfe; /* Hidden text, but kept for structure */
+            font-size: 0px;
+            font-weight: 0;
+            text-align: center;
+            text-shadow: 0 0 0px #a29bfe;
+            margin-bottom: 10px;
+        }
+
+        /* Insights Section */
+        .insights-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            position: relative;
+            overflow: hidden;
+            color: white; /* Ensure text is white */
+        }
+
+        .insights-section::before,
+        .insights-section::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatBubble 15s ease-in-out infinite alternate;
+        }
+
+        .insights-section::before {
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+        }
+
+        .insights-section::after {
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            animation-duration: 18s; /* Different duration for variety */
+            animation-direction: reverse;
+        }
+
+        @keyframes floatBubble {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .insight-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            color: white;
+            text-align: left;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .insight-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .insight-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .insight-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-meta {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .card-categories span {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Our Story Section */
+        .story-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            overflow: hidden;
+            color: white; /* Ensure text is white */
+        }
+
+        .story-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .story-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .story-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .story-button {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .story-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+            color: white;
+            text-decoration: none;
+        }
+
+        .story-graphic {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.2);
+            width: 100%;
+            height: 100%;
+            /* Using a more complex, abstract SVG for unique visual */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><filter id="f1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" /><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" /><feBlend in="SourceGraphic" in2="goo" /></filter></defs><g filter="url(%23f1)"><circle cx="50" cy="50" r="30" fill="%23ffffff" opacity="0.6"><animate attributeName="cx" values="50;150;50" dur="6s" repeatCount="indefinite" /><animate attributeName="cy" values="50;150;50" dur="7s" repeatCount="indefinite" /></circle><circle cx="150" cy="150" r="40" fill="%23ffffff" opacity="0.6"><animate attributeName="cx" values="150;50;150" dur="6.5s" repeatCount="indefinite" /><animate attributeName="cy" values="150;50;150" dur="7.5s" repeatCount="indefinite" /></circle><circle cx="100" cy="100" r="35" fill="%23ffffff" opacity="0.6"><animate attributeName="r" values="35;45;35" dur="5s" repeatCount="indefinite" /></circle><path d="M100 0 A100 100 0 0 1 200 100 A100 100 0 0 1 100 200 A100 100 0 0 1 0 100 A100 100 0 0 1 100 0Z" fill="rgba(255,255,255,0.05)" stroke="white" stroke-width="1"><animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="15s" repeatCount="indefinite" /></path></g></svg>') no-repeat center center / contain;
+            opacity: 0.3;
+            animation: rotate3D 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotate3D {
+            from { transform: translate(-50%, -50%) rotateY(0deg) rotateX(0deg); }
+            to { transform: translate(-50%, -50%) rotateY(360deg) rotateX(360deg); }
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white; /* Ensure text is white */
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon img {
+            transform: scale(1.1);
+        }
+
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Image Carousel Section (New) */
+        .image-carousel-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #a29bfe 0%, #ffeaa7 100%);
+            position: relative;
+            overflow: hidden;
+            color: var(--dark);
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            height: 500px; /* Fixed height for carousel */
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none; /* Ensure no underline on click */
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .carousel-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .carousel-nav-button:hover {
+            background: rgba(0, 0, 0, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav-button.prev {
+            left: 20px;
+        }
+
+        .carousel-nav-button.next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        /* Let's Connect Section (from sdfg.html, integrated) */
+        .lets-connect-section {
+            background: linear-gradient(to bottom, #f0f8ff, #e6f2ff);
+            color: #333;
+            padding: 100px 0; /* Consistent padding */
+        }
+
+        .lets-connect-section .hero-sub { /* Renamed to avoid conflict with main hero */
+            background: #007acc;
+            text-align: center;
+            padding: 3rem 1rem;
+            color: white;
+            margin-bottom: 50px; /* Spacing below this hero */
+        }
+
+        .lets-connect-section .hero-sub h1 {
+            font-size: 2.7rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .lets-connect-section .hero-sub p {
+            font-size: 1.1rem;
+        }
+
+        .lets-connect-section .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0;
+            color: #003366;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 1rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            width: 300px;
+            text-align: center;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,122,204,0.15) 0%, transparent 80%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            border: 2px solid #007acc;
+            box-shadow: 0 15px 35px rgba(0, 122, 204, 0.2);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: #007acc;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-card p a { /* Styling for hyperlinks within contact cards */
+            color: #007acc; /* Specific color for links */
+            text-decoration: none;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .contact-card p a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .map-section { /* Renamed from .map to avoid conflict */
+            position: relative;
+            width: 90%;
+            height: 350px;
+            margin: 3rem auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: box-shadow 0.4s ease;
+        }
+
+        .map-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(0,122,204,0.12) 20%, transparent 80%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .map-section:hover::before {
+            opacity: 1;
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            z-index: 0;
+        }
+
+        /* New Extended Contact Info Section */
+        .extended-contact-info {
+            background: #f8f9ff; /* Light background for contrast */
+            padding: 80px 0;
+            color: #333;
+        }
+
+        .extended-contact-info .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .extended-contact-info .card:hover {
+            transform: translateY(-5px) scale(1.01); /* Subtle lift and scale */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .extended-contact-info .card a {
+            color: #007acc; /* Consistent link color */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .extended-contact-info .card a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Footer (from MIMBER HOME, enhanced) */
+        footer {
+            padding: 70px 0;
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center; /* Center footer content */
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column; /* Stack on small screens */
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px; /* Spacing between elements */
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: var(--light);
+        }
+
+        .footer-logo-circle {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            margin-right: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap; /* Allow links to wrap */
+            justify-content: center; /* Center links */
+            gap: 20px; /* Reduced gap for more links */
+        }
+
+        .footer-links a {
+            font-size: 15px;
+            transition: color 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none; /* No underline by default */
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        .copyright {
+            font-size: 14px;
+            opacity: 0.6;
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Contact Floating Button (from newhome.html) */
+        .contact-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .contact-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px; /* Squircle shape */
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            animation: bounce 2s infinite;
+        }
+
+        .contact-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .contact-info {
+            position: absolute; /* Changed to absolute relative to contact-floating */
+            bottom: 70px; /* Position above the button */
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: none;
+            min-width: 250px;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        .contact-info.show {
+            display: block;
+        }
+
+        .contact-info h5 {
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info p a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info p a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* Animations (from newhome.html) */
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Section Transition Effects (from newhome.html) */
+        section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        section.section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .navbar {
+                max-width: calc(100% - 20px); /* Adjust for smaller screens */
+                right: 10px;
+                left: 10px;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .navbar-collapse {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(15px);
+                border-radius: 15px;
+                margin-top: 10px;
+                padding: 20px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            }
+            .navbar-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .navbar-nav .nav-item {
+                width: 100%;
+            }
+            .navbar-nav .nav-link {
+                width: 100%;
+                text-align: left;
+                margin: 5px 0;
+            }
+            .hero-title { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 2.8rem; }
+            .hero-description { font-size: 1.3rem; }
+            .organic-shape {
+                width: 400px;
+                height: 400px;
+                right: 5%;
+            }
+            .connect-quote { font-size: 2.8rem; }
+            .connect-graphic {
+                width: 500px;
+                height: 350px;
+            }
+            .section-title { font-size: 2.5rem; }
+            .contact-container {
+                flex-direction: column; /* For sdfg.html contact cards */
+                align-items: center;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 2.2rem; }
+            .hero-description { font-size: 1rem; }
+            .organic-shape {
+                width: 300px;
+                height: 300px;
+                right: 2%;
+            }
+            .story-content h2 { font-size: 2.5rem; }
+            .story-content p { font-size: 1rem; }
+            .connect-quote { font-size: 2.2rem; }
+            .connect-graphic {
+                width: 400px;
+                height: 250px;
+            }
+            .insight-card img { height: 150px; }
+            .service-card { margin: 10px 0; }
+            .contact-floating {
+                bottom: 20px;
+                right: 20px;
+            }
+            .contact-info {
+                bottom: 90px; /* Adjust position for smaller button */
+                min-width: 200px;
+            }
+            .container {
+                padding: 0 20px;
+            }
+            .lets-connect-section .hero-sub h1 { /* sdfg.html hero */
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                padding: 10px;
+                border-radius: 30px;
+            }
+            .navbar-brand { font-size: 1.4rem; }
+            .navbar-brand i { font-size: 1.7rem; }
+            .hero-section {
+                padding-top: 100px;
+                text-align: center;
+            }
+            .hero-content {
+                align-items: center;
+            }
+            .organic-shape {
+                position: static; /* Stack vertically on very small screens */
+                transform: none;
+                margin-top: 40px;
+                width: 250px;
+                height: 250px;
+            }
+            .connect-graphic {
+                position: static;
+                transform: none;
+                margin-top: 40px;
+                width: 100%;
+                height: 200px;
+            }
+            .contact-info {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 90px;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Structured Navigation -->
+    <nav class="navbar navbar-expand-lg" id="mainNavbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Mimber Academy</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#insights">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#story">Our Story</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="https://apkneo24.neocities.org/mimber/Services">Mimber Advisory</a></li>
+                            <li><a class="dropdown-item" href="https://apkneo24.neocities.org/mimber/harvest">Harvest Publication</a></li>
+                            <li><a class="dropdown-item" href="https://apkneo24.neocities.org/mimber/treills">Trellis System</a></li>
+                            <li><a class="dropdown-item" href="https://apkneo24.neocities.org/mimber/warda">Warda Resources</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#connect-page">Let's Connect</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://apkneo24.neocities.org/mimber/clr">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link enroll-btn" href="https://apkneo24.neocities.org/mimber/Mimer2">Enroll</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h2 class="hero-title">Mimber Academy is</h2>
+                        <h4 class="hero-subtitle">RETHINKING<br>EDUCATION...</h4>
+                        <p class="hero-description">Unlocking potential through innovative organic schooling methods</p>
+                        <a href="#services" class="cta-button">
+                            Learn More <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                    <div class="organic-shape">
+                        <div class="organic-text">Organic<br>Schooling</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Carousel Section -->
+    <section class="image-carousel-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title text-dark">Our Gallery</h2>
+            <div class="carousel-container">
+                <a href="https://example.com/gallery1" class="carousel-slide active" style="background-image: url('https://placehold.co/900x500/FFD700/000000?text=Image+1');">
+                    <h3>Inspiring Minds</h3>
+                </a>
+                <a href="https://example.com/gallery2" class="carousel-slide" style="background-image: url('https://placehold.co/900x500/ADFF2F/000000?text=Image+2');">
+                    <h3>Creative Spaces</h3>
+                </a>
+                <a href="https://example.com/gallery3" class="carousel-slide" style="background-image: url('https://placehold.co/900x500/87CEEB/000000?text=Image+3');">
+                    <h3>Collaborative Learning</h3>
+                </a>
+                <a href="https://example.com/gallery4" class="carousel-slide" style="background-image: url('https://placehold.co/900x500/FF6347/000000?text=Image+4');">
+                    <h3>Future Leaders</h3>
+                </a>
+                <a href="https://example.com/gallery5" class="carousel-slide" style="background-image: url('https://placehold.co/900x500/DA70D6/000000?text=Image+5');">
+                    <h3>Innovation in Action</h3>
+                </a>
+                <a href="https://example.com/gallery6" class="carousel-slide" style="background-image: url('https://placehold.co/900x500/20B2AA/000000?text=Image+6');">
+                    <h3>Empowering Education</h3>
+                </a>
+
+                <button class="carousel-nav-button prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav-button next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+
+                <div class="carousel-dots">
+                    <span class="carousel-dot active" data-slide-index="0"></span>
+                    <span class="carousel-dot" data-slide-index="1"></span>
+                    <span class="carousel-dot" data-slide-index="2"></span>
+                    <span class="carousel-dot" data-slide-index="3"></span>
+                    <span class="carousel-dot" data-slide-index="4"></span>
+                    <span class="carousel-dot" data-slide-index="5"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights-section" id="insights">
+        <div class="container">
+            <h2 class="section-title">Introducing Mimber Insights - a hub for exploring the future of learning</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="insight-card">
+                        <img src="https://placehold.co/600x400/667eea/ffffff?text=Insight+1" alt="The River of Abundance">
+                        <div class="card-content">
+                            <div class="card-categories">
+                                <span>Featured</span>
+                                <span>Education</span>
+                            </div>
+                            <h4>The River of Abundance</h4>
+                            <p class="card-meta"><i class="fas fa-user"></i> admin &nbsp; <i class="fas fa-calendar-alt"></i> February 15, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="insight-card">
+                        <img src="https://placehold.co/600x400/764ba2/ffffff?text=Insight+2" alt="The Emotional Synchrony">
+                        <div class="card-content">
+                            <div class="card-categories">
+                                <span>Innovation</span>
+                                <span>Learning</span>
+                            </div>
+                            <h4>The Emotional Synchrony</h4>
+                            <p class="card-meta"><i class="fas fa-user"></i> admin &nbsp; <i class="fas fa-calendar-alt"></i> January 26, 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="insight-card">
+                        <img src="https://placehold.co/600x400/4facfe/ffffff?text=Insight+3" alt="Readers Today, Leaders Tomorrow">
+                        <div class="card-content">
+                            <div class="card-categories">
+                                <span>Leadership</span>
+                                <span>Development</span>
+                            </div>
+                            <h4>Readers Today, Leaders Tomorrow</h4>
+                            <p class="card-meta"><i class="fas fa-user"></i> admin &nbsp; <i class="fas fa-calendar-alt"></i> January 26, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="https://vasanth45r.neocities.org/MimberInsight/MAIN" class="cta-button">Visit Insights <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section" id="story">
+        <div class="story-graphic"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="story-content">
+                        <h2>Our Story</h2>
+                        <p>At Mimber, we are committed to restoring human dignity by enabling each individual to harness their inherent potential and become a contributor for good.</p>
+                        <a href="https://apkneo24.neocities.org/mimber/story" class="story-button">Explore Our Story <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lets-connect-section" id="services-form" style="background: linear-gradient(to right, #ff4e02, #006aff); padding: 80px 20px;">
+    <div class="container" style="max-width: 600px; margin: auto; background-color: aliceblue; border: 2px solid #33e011; border-radius: 30px; padding: 30px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+        <h2 style="text-align:center; color: #1b5e20; font-size: 1.8rem; margin-bottom: 20px;">Which service are you interested in</h2>
+        <form id="service-form" onsubmit="return validateForm()" action="Mimer2.html">
+        <fieldset>
+            <legend style="color: #0d47a1; font-weight: bold; font-size: 1.1rem;">Select primary service</legend>
+            <label><input type="checkbox" name="service" value="Advisory"> Advisory</label>
+            <label><input type="checkbox" name="service" value="Trellis" id="trellis"> Trellis</label>
+            <label><input type="checkbox" name="service" value="Harvest" id="harvest"> Harvest</label>
+            <button id="ECD" type="submit" style="display: block; margin: 20px auto 0; background: linear-gradient(to right, #1ac01a, #00b7ff); color: white; font-size: 16px; padding: 12px 24px; border: none; border-radius: 20px; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); transition: background 0.3s ease;">Enter Contact Details</button>
+        </fieldset>
+
+        <fieldset id="trellis-options" style="display: none; margin-top: 20px;">
+            <legend style="color: #0d47a1; font-weight: bold; font-size: 1.1rem;">Trellis-related services</legend>
+            <label><input type="checkbox" name="trellisOption" value="Professional Development Training"> Professional Development Training</label>
+            <label><input type="checkbox" name="trellisOption" value="Leadership Training"> Leadership Training</label>
+            <label><input type="checkbox" name="trellisOption" value="Subject-Specific Training"> Subject-Specific Training</label>
+            <label><input type="checkbox" name="trellisOption" value="On-Site Training"> On-Site Training</label>
+            <label><input type="checkbox" name="trellisOption" value="Communicative English Training"> Communicative English Training</label>
+            <label><input type="checkbox" name="trellisOption" value="School Transformation Projects"> School Transformation Projects</label>
+        </fieldset>
+
+        <fieldset id="harvest-options" style="display: none; margin-top: 20px;">
+            <legend style="color: #0d47a1; font-weight: bold; font-size: 1.1rem;">Harvest-related services</legend>
+            <label><input type="checkbox" name="harvestOption" value="Willow series"> Willow series</label>
+            <label><input type="checkbox" name="harvestOption" value="Samar Series"> Samar Series</label>
+            <label><input type="checkbox" name="harvestOption" value="Fellah Series"> Fellah Series</label>
+        </fieldset>
+        </form>
+    </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Products & Services</h2>
+            <div class="row">
+                <div class="w-full sm:w-1/2 lg:w-1/4 px-4 mb-8">
+                <div class="service-card" id="advisory">
+                    <a href="https://apkneo24.neocities.org/mimber/Services">
+                        <div class="service-icon">
+                            <img src="https://placehold.co/64x64/6c5ce7/ffffff?text=Advisory" alt="Mimber Advisory Icon">
+                        </div>
+                        <h4>Mimber Advisory</h4>
+                        <p>Unlock the potential of your institute with our expert advisory services</p>
+                    </a>
+                </div>
+            </div>
+                <div class="w-full sm:w-1/2 lg:w-1/4 px-4 mb-8">
+                <div class="service-card" id="harvest">
+                    <a href="https://apkneo24.neocities.org/mimber/harvest">
+                        <div class="service-icon">
+                            <img src="https://placehold.co/64x64/feca57/ffffff?text=Publication" alt="Harvest Publication Icon">
+                        </div>
+                        <h4>Harvest Publication</h4>
+                        <p>At Harvest Publications, we aim to reap a generation of responsible contributors by sowing the seeds of quality education</p>
+                    </a>
+                </div>
+            </div>
+                <div class="w-full sm:w-1/2 lg:w-1/4 px-4 mb-8">
+                <div class="service-card" id="trellis">
+                    <a href="https://apkneo24.neocities.org/mimber/treills">
+                        <div class="service-icon">
+                            <img src="https://placehold.co/64x64/00b894/ffffff?text=Trellis" alt="Trellis System Icon">
+                        </div>
+                        <h4>Trellis - School Support System</h4>
+                        <p>Trellis intends to support educators with services that strengthen the teaching-learning process</p>
+                    </a>
+                </div>
+            </div>
+                <div class="w-full sm:w-1/2 lg:w-1/4 px-4 mb-8">
+                <div class="service-card" id="warda">
+                    <a href="https://apkneo24.neocities.org/mimber/warda">
+                        <div class="service-icon">
+                            <img src="https://placehold.co/64x64/a29bfe/ffffff?text=Warda" alt="Warda Resources Icon">
+                        </div>
+                        <h4>Warda - World of Resources</h4>
+                        <p>Warda Digital Repository - A haven for educators, students and parents alike</p>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Let's Connect Section (from sdfg.html) -->
+    <section class="lets-connect-section" id="connect-page">
+        <div class="container">
+
+                <h2 class="section-title" data-aos="fade-up">Connect With Us</h2>
+
+    
+
+                
+    <!-- New Extended Contact Info Section -->
+    <section class="extended-contact-info" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title text-dark">Mimber Academy</h2>
+            <p class="text-center lead mb-4 text-muted">Collaborate and contribute to build leaders of tomorrow</p>
+
+            <div class="card p-4 shadow-sm rounded-lg text-center mx-auto" style="max-width: 600px;">
+                <h3 class="mb-3 text-primary">Let's Connect</h3>
+                <p class="mb-2"><strong>Address:</strong> Office Number 307, Down Town The Mall, adjoining Lotus Hospital, Veer Nagar, Lakdikapul, Hyderabad, Telangana 500004</p>
+                <p class="mb-2"><strong>T:</strong> <a href="tel:+917386731322">+91 7386731322</a></p>
+                <p class="mb-2"><strong>T:</strong> <a href="tel:+919248001322">+91 9248001322</a></p>
+                <p class="mb-0"><strong>E:</strong> <a href="mailto:info@mimber.co">info@mimber.co</a></p>
+            </div>
+        </div>
+        <section class="map-section" data-aos="fade-up">
+                    <iframe
+                        src="https://www.google.com/maps?q=Lakdikapul,Hyderabad&output=embed"
+                        allowfullscreen=""
+                        loading="lazy"
+                    ></iframe>
+        </section>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="footer-logo-circle"></span>
+                    Mimber
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#connect-page">Connect</a>
+                    <a href="#insights">Insights</a>
+                    <a href="#story">Story</a>
+                    <a href="#services">Services</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <p class="copyright">© 2023 Mimber Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    // Calculate offset for fixed navbar
+                    const navbarHeight = document.getElementById('mainNavbar').offsetHeight;
+                    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - navbarHeight - 30; // Add extra padding
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close navbar on click for mobile
+                    const navbarCollapse = document.getElementById('navbarNav');
+                    if (navbarCollapse.classList.contains('show')) {
+                        new bootstrap.Collapse(navbarCollapse).hide();
+                    }
+                }
+            });
+        });
+
+        // Navigation active state based on scroll position
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        function setActiveNavLink() {
+            const scrollPos = window.scrollY + 150; // Offset for navbar and some padding
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        // Handle dropdown links specifically
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        } else if (link.classList.contains('dropdown-toggle')) {
+                            // Check if any dropdown item matches the current section
+                            const dropdownItems = link.nextElementSibling.querySelectorAll('.dropdown-item');
+                            dropdownItems.forEach(item => {
+                                if (item.getAttribute('href') === `#${sectionId}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveNavLink);
+        // Set active link on initial load
+        document.addEventListener('DOMContentLoaded', setActiveNavLink);
+
+
+        // Text animation for buttons (hover effects)
+        document.querySelectorAll('.cta-button, .story-button, .submit-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // 3D parallax effect for organic shape in Hero section
+        document.addEventListener('mousemove', (e) => {
+            const organicShape = document.querySelector('.organic-shape');
+            if (organicShape) {
+                // Calculate parallax effect based on mouse position
+                const x = (e.clientX / window.innerWidth - 0.5) * 20; // -10 to 10
+                const y = (e.clientY / window.innerHeight - 0.5) * 20; // -10 to 10
+                organicShape.style.transform = `translateY(-50%) translateX(${x}px) translateY(${y}px)`;
+            }
+        });
+
+        // Intersection Observer for section animations (fade-in on scroll)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 // Trigger when 20% of the section is visible
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-visible');
+                } else {
+                    // Optional: remove 'section-visible' when out of view to re-animate on scroll back
+                    // entry.target.classList.remove('section-visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section[id]').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Initialize sections to be hidden on load (except the first one)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('section[id]').forEach(section => {
+                if (section.id !== 'home') {
+                    section.classList.add('section-hidden'); // This class is defined in CSS to set initial opacity/transform
+                }
+            });
+        });
+
+        // Image Carousel Logic
+        let currentSlideIndex = 0;
+        const carouselSlides = document.querySelectorAll('.carousel-slide');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        const totalCarouselSlides = carouselSlides.length;
+
+        function showCarouselSlide(n) {
+            if (totalCarouselSlides === 0) return;
+
+            // Hide all slides and deactivate all dots
+            carouselSlides.forEach(slide => slide.classList.remove('active'));
+            carouselDots.forEach(dot => dot.classList.remove('active'));
+
+            // Calculate the new index
+            currentSlideIndex = (n + totalCarouselSlides) % totalCarouselSlides;
+
+            // Show the current slide and activate the corresponding dot
+            carouselSlides[currentSlideIndex].classList.add('active');
+            carouselDots[currentSlideIndex].classList.add('active');
+        }
+
+        function changeCarouselSlide(direction) {
+            showCarouselSlide(currentSlideIndex + direction);
+        }
+
+        // Event listeners for prev/next buttons
+        document.querySelector('.carousel-nav-button.prev').addEventListener('click', () => {
+            changeCarouselSlide(-1);
+        });
+
+        document.querySelector('.carousel-nav-button.next').addEventListener('click', () => {
+            changeCarouselSlide(1);
+        });
+
+        // Event listeners for dot navigation
+        carouselDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showCarouselSlide(index);
+            });
+        });
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            changeCarouselSlide(1);
+        }, 5000);
+
+        // Initialize carousel on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showCarouselSlide(0);
+        });
+
+        // Bounce click effect for cards and map from sdfg.html
+        document.querySelectorAll('.contact-card, .map-section, .extended-contact-info .card').forEach(el => {
+            el.addEventListener('click', () => {
+                el.style.transform = 'scale(0.97)';
+                setTimeout(() => {
+                    el.style.transform = '';
+                }, 200);
+            });
+        });
+
+        document.getElementById('trellis').addEventListener('change', function () {
+        document.getElementById('trellis-options').style.display = this.checked ? 'block' : 'none';
+    });
+
+    document.getElementById('harvest').addEventListener('change', function () {
+        document.getElementById('harvest-options').style.display = this.checked ? 'block' : 'none';
+    });
+
+    function validateForm() {
+        const form = document.getElementById('service-form');
+        if (form.querySelectorAll('input[name="service"]:checked').length === 0) {
+        alert("Please select at least one primary service.");
+        return false;
+        }
+        if (document.getElementById('trellis').checked &&
+        form.querySelectorAll('input[name="trellisOption"]:checked').length === 0) {
+        alert("Please select at least one Trellis-related service.");
+        return false;
+        }
+        if (document.getElementById('harvest').checked &&
+        form.querySelectorAll('input[name="harvestOption"]:checked').length === 0) {
+        alert("Please select at least one Harvest-related service.");
+        return false;
+        }
+        return true;
+    }
+    </script>
+</body>
+</html>
